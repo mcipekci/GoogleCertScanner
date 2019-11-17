@@ -14,13 +14,13 @@ cURL
 
 Usage:
 
-Syntax: ./gtr.sh <target> <subdomains> <expired-certs>
+Syntax: ./gtr.sh target subdomains expired-certs
   
-<target>: target domain e.g: google.com
+target: target domain e.g: google.com
   
-<subdomains>: 1 true / 0 false
+subdomains: 1 true / 0 false
   
-<expired-certs>: 1 true / 0 false
+expired-certs: 1 true / 0 false
   
 Example: ./gtr.sh google.com 1 0
 
