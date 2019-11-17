@@ -8,6 +8,7 @@ I was looking for a tool to scan it then decided to write my own in purely bash.
 Requirements:
 
 JQ: https://stedolan.github.io/jq/
+
 cURL
 
 
