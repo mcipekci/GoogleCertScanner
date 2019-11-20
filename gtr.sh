@@ -14,7 +14,7 @@ function fetchData() {
 	if [[ $next_page != "none" ]]; then
     		url="https://transparencyreport.google.com/transparencyreport/api/v3/httpsreport/ct/certsearch/page?domain=$domain&include_expired=$include_expired&include_subdomains=$include_subdomains&p=$next_page"
 	fi
-	request=$(curl -s $url --connect-timeout 25 | tail -n +2)
+	request=$(curl -s $url --connect-timeout 25 | tail -n +3 | jq .)
 	for i in {1..10}
 	do
 		result=$(echo $request | jq '.[][1]['$i'][1]' | sed 's/\"//g')
@@ -53,9 +53,9 @@ function searchGoogle() {
 	echo "-----------------------------------------------------"
 	echo ""
 	echo "Results:"
-	echo -e $results | sort -u | tee -a $filename
+	echo -e $results | sed -r 's/\s+//g' | sort -u | tail -n +2 | tee -a $filename
 	echo ""
-	count=$(echo -e $results | sort -u | wc -l)
+	count=$(wc -l $filename | awk {'print $1'})
 	echo "-----------------------------------------------------"
 	echo "Saved output on: $filename"
 	echo "Total domains found: $count"
